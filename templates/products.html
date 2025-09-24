@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Products - MyShop</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+  <body>
+    <nav>
+      <div class="logo">MyShop</div>
+      <div class="menu-toggle">&#9776;</div>
+      <ul class="nav-links">
+        <li><a href="{{ url_for('index') }}">Home</a></li>
+        <li><a href="{{ url_for('products') }}" class="active">Shop</a></li>
+        <li><a href="{{ url_for('cart') }}">Cart</a></li>
+      </ul>
+    </nav>
+
+    <main>
+      <section class="products">
+        <h2>All Products</h2>
+        <div class="product-grid">
+          {% for product in products %}
+          <div class="product-card">
+            <img src="{{ product.image_url }}" alt="{{ product.name }}" />
+            <h3>{{ product.name }}</h3>
+            <p>${{ "%.2f"|format(product.price) }}</p>
+
+            <form
+              action="{{ url_for('add_to_cart', product_id=product.id) }}"
+              method="post"
+              style="display: inline"
+            >
+              <button type="submit" class="btn">Add to Cart</button>
+            </form>
+          </div>
+          {% endfor %}
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2025 MyShop. All rights reserved.</p>
+    </footer>
+
+    <script>
+      const menuToggle = document.querySelector(".menu-toggle");
+      const navLinks = document.querySelector(".nav-links");
+      menuToggle.addEventListener("click", () =>
+        navLinks.classList.toggle("active")
+      );
+    </script>
+  </body>
+</html>
