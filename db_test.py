@@ -2,12 +2,16 @@ from flask_sqlalchemy import SQLAlchemy
 
 
 def populate_db_test(db: SQLAlchemy, User, Product):
+
+    # crea utenti di test
     if not User.query.first():
-        user = User(email="test@example.com", password="password")
-        user = User(email="demo@demo.com", password="password")
-        db.session.add(user)
+        user1 = User(email="test@example.com", password="password")
+        user2 = User(email="demo@demo.com", password="password")
+        db.session.add(user1)
+        db.session.add(user2)
         db.session.commit()
 
+    # crea prodotti di test
     if not Product.query.first():
         db.session.bulk_save_objects(
             [
