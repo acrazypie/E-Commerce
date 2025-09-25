@@ -15,7 +15,7 @@ routes = Blueprint("routes", __name__)
 
 @routes.route("/")
 def index():
-    products = Product.query.limit(3).all()
+    products = Product.query.order_by(db.func.random()).limit(3).all()
     return render_template("index.html", products=products)
 
 

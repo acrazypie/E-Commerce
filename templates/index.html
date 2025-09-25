@@ -3,14 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Flask E-Commerce</title>
+    <title>E-Commerce</title>
     <link
       rel="stylesheet"
       href="{{ url_for('static', filename='style.css') }}"
     />
   </head>
   <body>
-    <!-- Navbar -->
     <nav>
       <div class="logo">MyShop</div>
       <div class="menu-toggle">&#9776;</div>
@@ -27,14 +26,12 @@
       </ul>
     </nav>
 
-    <!-- Hero Section -->
     <header class="hero">
       <h1>Welcome to MyShop</h1>
       <p>Your one-stop online store!</p>
       <a href="{{ url_for('routes.products') }}" class="btn">Shop Now</a>
     </header>
 
-    <!-- Products Grid -->
     <main>
       <section class="products">
         <h2>Featured Products</h2>
@@ -58,7 +55,6 @@
       </section>
     </main>
 
-    <!-- Footer -->
     <footer>
       <p>&copy; 2025 MyShop. All rights reserved.</p>
     </footer>
