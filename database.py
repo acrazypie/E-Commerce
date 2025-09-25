@@ -4,7 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 def populate_db_test(db: SQLAlchemy, User, Product):
     if not User.query.first():
         user = User(email="test@example.com", password="password")
-        user = User(email="test@demo.com", password="password")
+        user = User(email="demo@demo.com", password="password")
         db.session.add(user)
         db.session.commit()
 
