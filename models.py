@@ -4,22 +4,20 @@ from werkzeug.security import generate_password_hash, check_password_hash
 db = SQLAlchemy()
 
 
-# modello user
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(120), unique=True, nullable=False)
-    password = db.Column(db.String(200), nullable=False)
+    password_hash = db.Column(db.String(200), nullable=False)
 
     carts = db.relationship("Cart", backref="user", lazy=True)
 
     def set_password(self, password: str):
-        self.password = generate_password_hash(password)
+        self.password_hash = generate_password_hash(password)
 
     def check_password(self, password: str) -> bool:
-        return check_password_hash(self.password, password)
+        return check_password_hash(self.password_hash, password)
 
 
-# modello prodotto
 class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(120), nullable=False)
@@ -28,7 +26,6 @@ class Product(db.Model):
     image_url = db.Column(db.String(255), nullable=True)
 
 
-# modello item nel carrello
 class CartItem(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     cart_id = db.Column(db.Integer, db.ForeignKey("cart.id"), nullable=False)
@@ -39,7 +36,6 @@ class CartItem(db.Model):
     cart = db.relationship("Cart", back_populates="items")
 
 
-# modello carrello
 class Cart(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)

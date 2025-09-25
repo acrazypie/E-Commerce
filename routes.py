@@ -86,19 +86,21 @@ def checkout():
 
 
 # login e logout
-@routes.route("/login", methods=["POST"])
+@routes.route("/login", methods=["GET", "POST"])
 def login():
-    email = request.form["email"]
-    password = request.form["password"]
+    if request.method == "POST":
+        email = request.form.get("email")
+        password = request.form.get("password")
 
-    user = User.query.filter_by(email=email).first()
-    if user and user.check_password(password):
-        session["user_id"] = user.id
-        flash("Login successful!", "success")
-        return redirect(url_for("routes.index"))
-    else:
-        flash("Invalid email or password", "danger")
-        return redirect(url_for("routes.index"))
+        user = User.query.filter_by(email=email).first()
+        if user and user.check_password(password):
+            session["user_id"] = user.id
+            flash("Login successful!", "success")
+            return redirect(url_for("routes.index"))
+        else:
+            flash("Invalid email or password", "danger")
+
+    return render_template("login.html")
 
 
 @routes.route("/logout")
