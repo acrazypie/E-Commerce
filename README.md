@@ -29,6 +29,5 @@ Un esempio di e-commerce creato con **Flask** e **SQLAlchemy**.
 - Nome file: snake_case.py
 - Funzioni e variabili: snake_case
 - Classi: CamelCase
-- Commenti in italiano / docstring in italiano (coerenza con il corso)
 
 mantenuto da [acrazypie](https://linktr.ee/gen3sio)
