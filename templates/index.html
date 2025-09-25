@@ -15,12 +15,12 @@
       <div class="logo">MyShop</div>
       <div class="menu-toggle">&#9776;</div>
       <ul class="nav-links">
-        <li><a href="{{ url_for('index') }}">Home</a></li>
-        <li><a href="{{ url_for('products') }}">Shop</a></li>
-        <li><a href="{{ url_for('cart') }}">Cart</a></li>
+        <li><a href="{{ url_for('routes.index') }}">Home</a></li>
+        <li><a href="{{ url_for('routes.products') }}">Shop</a></li>
+        <li><a href="{{ url_for('routes.cart') }}">Cart</a></li>
 
         {% if 'user_id' in session %}
-        <li><a href="{{ url_for('logout') }}">Logout</a></li>
+        <li><a href="{{ url_for('routes.logout') }}">Logout</a></li>
         {% else %}
         <li>
           <a
@@ -37,7 +37,7 @@
     <header class="hero">
       <h1>Welcome to MyShop</h1>
       <p>Your one-stop online store!</p>
-      <a href="{{ url_for('products') }}" class="btn">Shop Now</a>
+      <a href="{{ url_for('routes.products') }}" class="btn">Shop Now</a>
     </header>
 
     <!-- Products Grid -->
@@ -46,24 +46,13 @@
         <h2>Featured Products</h2>
         <div class="product-grid">
           {% for product in products %}
-          <!--
-          <div class="product-card">
-            <img src="{{ product.image_url }}" alt="{{ product.name }}" />
-            <h3>{{ product.name }}</h3>
-            <p>${{ product.price }}</p>
-            <a
-              href="{{ url_for('add_to_cart', product_id=product.id) }}"
-              class="btn"
-              >Add to Cart</a
-            >
-          </div> -->
           <div class="product-card">
             <img src="{{ product.image_url }}" alt="{{ product.name }}" />
             <h3>{{ product.name }}</h3>
             <p>${{ "%.2f"|format(product.price) }}</p>
 
             <form
-              action="{{ url_for('add_to_cart', product_id=product.id) }}"
+              action="{{ url_for('routes.add_to_cart', product_id=product.id) }}"
               method="post"
               style="display: inline"
             >
@@ -89,7 +78,7 @@
           >&times;</span
         >
         <h2>Login</h2>
-        <form action="{{ url_for('login') }}" method="POST">
+        <form action="{{ url_for('routes.login') }}" method="POST">
           <label>Email:</label>
           <input type="email" name="email" required />
 

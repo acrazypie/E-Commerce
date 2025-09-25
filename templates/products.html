@@ -14,9 +14,11 @@
       <div class="logo">MyShop</div>
       <div class="menu-toggle">&#9776;</div>
       <ul class="nav-links">
-        <li><a href="{{ url_for('index') }}">Home</a></li>
-        <li><a href="{{ url_for('products') }}" class="active">Shop</a></li>
-        <li><a href="{{ url_for('cart') }}">Cart</a></li>
+        <li><a href="{{ url_for('routes.index') }}">Home</a></li>
+        <li>
+          <a href="{{ url_for('routes.products') }}" class="active">Shop</a>
+        </li>
+        <li><a href="{{ url_for('routes.cart') }}">Cart</a></li>
       </ul>
     </nav>
 
@@ -25,7 +27,7 @@
         <h2>All Products</h2>
 
         <form
-          action="{{ url_for('products') }}"
+          action="{{ url_for('routes.products') }}"
           method="get"
           class="search-form"
         >
@@ -46,7 +48,7 @@
             <p>${{ "%.2f"|format(product.price) }}</p>
 
             <form
-              action="{{ url_for('add_to_cart', product_id=product.id) }}"
+              action="{{ url_for('routes.add_to_cart', product_id=product.id) }}"
               method="post"
               style="display: inline"
             >

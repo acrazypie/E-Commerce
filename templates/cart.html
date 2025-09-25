@@ -14,9 +14,9 @@
       <div class="logo">MyShop</div>
       <div class="menu-toggle">&#9776;</div>
       <ul class="nav-links">
-        <li><a href="{{ url_for('index') }}">Home</a></li>
-        <li><a href="{{ url_for('products') }}">Shop</a></li>
-        <li><a href="{{ url_for('cart') }}" class="active">Cart</a></li>
+        <li><a href="{{ url_for('routes.index') }}">Home</a></li>
+        <li><a href="{{ url_for('routes.products') }}">Shop</a></li>
+        <li><a href="{{ url_for('routes.cart') }}" class="active">Cart</a></li>
       </ul>
     </nav>
 
@@ -44,7 +44,7 @@
               <td>${{ item.product.price * item.quantity }}</td>
               <td>
                 <a
-                  href="{{ url_for('remove_from_cart', item_id=item.id) }}"
+                  href="{{ url_for('routes.remove_from_cart', item_id=item.id) }}"
                   class="btn small"
                   >Remove</a
                 >
@@ -56,7 +56,7 @@
 
         <div class="cart-summary">
           <p><strong>Total:</strong> ${{ cart_total }}</p>
-          <a href="{{ url_for('checkout') }}" class="btn"
+          <a href="{{ url_for('routes.checkout') }}" class="btn"
             >Proceed to Checkout</a
           >
         </div>
