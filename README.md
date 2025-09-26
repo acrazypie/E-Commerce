@@ -9,7 +9,7 @@ Un esempio di e-commerce creato con **Python e Flask**, database in **SQLite**.
 - Prodotti consigliati nella home
 - Shop con prodotti curati
 - Carrello facilmente gestibile
-  
+
 ## 💾 Installazione
 
 1. Clona la repository:
@@ -26,6 +26,7 @@ Un esempio di e-commerce creato con **Python e Flask**, database in **SQLite**.
    ```
 
 ## 📂 Struttura
+
 ```bash
 project/
 │── app.py # Applicazione Flask
@@ -34,16 +35,17 @@ project/
 ├── db_test.py # Script per popolare il db (testing purposes)
 │── database/ # Database SQLite (creato automaticamente)
 │── templates/ # Templates HTML (Jinja2)
-│ ├── cart.html 
+│ ├── cart.html
 │ ├── index.html
 │ ├── login.html
 │ ├── products.html
 │ └── register.html
 │── static/ # File CSS
+│── requirements.txt # Librerie usate
+│── .gitignore # Ignore __pycache__ folder on commits
 │── README.md # Documentazione del progetto
 
 ```
-
 
 ## 🚀 Stile e convenzioni
 
