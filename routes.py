@@ -16,13 +16,18 @@ routes = Blueprint("routes", __name__)
 @routes.route("/")
 def index():
     products = Product.query.order_by(db.func.random()).limit(3).all()
+    user = None
+    if "user_id" in session:
+        user = User.query.get(session["user_id"])
 
     cart_items = 0
     if "user_id" in session:
         items = get_user_cart_items(db, session["user_id"], Cart, CartItem)
         cart_items = sum(item.quantity for item in items)
 
-    return render_template("index.html", products=products, cart_item_count=cart_items)
+    return render_template(
+        "index.html", products=products, cart_item_count=cart_items, user=user
+    )
 
 
 @routes.route("/products")
@@ -39,7 +44,10 @@ def products():
         products = Product.query.all()
 
     return render_template(
-        "products.html", products=products, cart_item_count=cart_items
+        "products.html",
+        products=products,
+        cart_item_count=cart_items,
+        user=User.query.get(session["user_id"]) if "user_id" in session else None,
     )
 
 
@@ -52,7 +60,12 @@ def cart():
     items = get_user_cart_items(db, session["user_id"], Cart, CartItem)
     total = get_user_cart_total(db, session["user_id"], Cart, CartItem)
 
-    return render_template("cart.html", cart_items=items, cart_total=total)
+    return render_template(
+        "cart.html",
+        cart_items=items,
+        cart_total=total,
+        user=User.query.get(session["user_id"]) if "user_id" in session else None,
+    )
 
 
 @routes.route("/add_to_cart/<int:product_id>", methods=["POST"])
@@ -100,6 +113,55 @@ def checkout():
         return redirect(url_for("routes.index"))
     flash("Checkout is under construction 🚧", "info")
     return redirect(url_for("routes.cart"))
+
+
+@routes.route("/register_item", methods=["GET", "POST"])
+def register_item():
+
+    if request.method == "POST":
+        name = request.form.get("name")
+        price = request.form.get("price")
+        description = request.form.get("description")
+        image_url = request.form.get("image_url")
+
+        if not name or not price:
+            flash("Name and Price are required fields.", "danger")
+            return redirect(url_for("routes.register_item"))
+
+        try:
+            price = float(price)
+        except ValueError:
+            flash("Invalid price format.", "danger")
+            return redirect(url_for("routes.register_item"))
+
+        new_product = Product()
+        new_product.name = name
+        new_product.price = price
+        new_product.description = description
+        new_product.image_url = image_url
+
+        db.session.add(new_product)
+        db.session.commit()
+
+        flash("Product added successfully!", "success")
+        return redirect(url_for("routes.products"))
+
+    return render_template("register_item.html")
+
+
+@routes.route("/remove_item/", methods=["GET", "POST"])
+def remove_item():
+    products = Product.query.all()
+
+    if request.method == "POST":
+        product_id = request.form.get("product_id")
+        product = Product.query.get_or_404(product_id)
+        db.session.delete(product)
+        db.session.commit()
+        flash("Product removed successfully!", "success")
+        return redirect(url_for("routes.products"))
+
+    return render_template("remove_item.html", products=products)
 
 
 # login e logout

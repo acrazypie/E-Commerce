@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Remove Products - E-Commerce</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+  <body>
+    <nav>
+      <div class="logo">MyShop</div>
+      <div class="menu-toggle">&#9776;</div>
+      <ul class="nav-links">
+        <li><a href="{{ url_for('routes.index') }}">Home</a></li>
+        <li><a href="{{ url_for('routes.products') }}">Shop</a></li>
+        <li>
+          <a
+            href="{{ url_for('routes.register_item') }}"
+            style="
+              white-space: nowrap;
+              margin: 10px;
+              background-color: #28a745;
+              color: white;
+              border-radius: 5px;
+              padding: 5px 10px;
+            "
+            >Add</a
+          >
+        </li>
+      </ul>
+    </nav>
+
+    <div class="flash-messages">
+      {% with messages = get_flashed_messages(with_categories=true) %} {% if
+      messages %} {% for category, message in messages %}
+      <div class="flash {{ category }}">{{ message }}</div>
+      {% endfor %} {% endif %} {% endwith %}
+    </div>
+
+    <main class="remove-item">
+      <h2>Remove Product</h2>
+      <form action="{{ url_for('routes.remove_item') }}" method="post">
+        <label for="product_id">Product ID:</label>
+        <select id="product_id" name="product_id" required>
+          <option value="" disabled selected>Select a product</option>
+          {% for product in products %}
+          <option value="{{ product.id }}">{{ product.name }}</option>
+          {% endfor %}
+        </select>
+
+        <button type="submit" class="btn">Remove Product</button>
+      </form>
+    </main>
+
+    <footer>
+      <p>&copy; 2025 MyShop. All rights reserved.</p>
+    </footer>
+
+    <script>
+      const menuToggle = document.querySelector(".menu-toggle");
+      const navLinks = document.querySelector(".nav-links");
+      menuToggle.addEventListener("click", () =>
+        navLinks.classList.toggle("active")
+      );
+    </script>
+  </body>
+</html>

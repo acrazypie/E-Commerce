@@ -4,15 +4,12 @@ from models import db, User, Product
 def populate_db_test():
 
     if not User.query.first():
-        user1 = User()
-        user1.email = "test@example.com"
-        user1.set_password("password")
-        db.session.add(user1)
 
-        user2 = User()
-        user2.email = "demo@demo.com"
-        user2.set_password("MyPassword123")
-        db.session.add(user2)
+        test_admin = User()
+        test_admin.email = "demo@demo.com"
+        test_admin.set_password("MyPassword123")
+        test_admin.is_admin = True
+        db.session.add(test_admin)
 
         db.session.commit()
 

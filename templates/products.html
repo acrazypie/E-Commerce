@@ -19,12 +19,47 @@
           <a href="{{ url_for('routes.products') }}" class="active">Shop</a>
         </li>
         <li>
-          <a href="{{ url_for('routes.cart') }}"
-            >Cart ({{ cart_item_count }})</a
+          <a href="{{ url_for('routes.cart') }}">Cart {{ cart_item_count }}</a>
+        </li>
+        {% if user.is_admin %}
+        <li>
+          <a
+            href="{{ url_for('routes.register_item') }}"
+            style="
+              white-space: nowrap;
+              margin: 10px;
+              background-color: #28a745;
+              color: white;
+              border-radius: 5px;
+              padding: 5px 10px;
+            "
+            >Add</a
           >
         </li>
+        <li>
+          <a
+            href="{{ url_for('routes.remove_item') }}"
+            style="
+              white-space: nowrap;
+              margin: 10px;
+              background-color: #dc3545;
+              color: white;
+              border-radius: 5px;
+              padding: 5px 10px;
+            "
+            >Remove</a
+          >
+        </li>
+        {% endif %}
       </ul>
     </nav>
+
+    <div class="flash-messages">
+      {% with messages = get_flashed_messages(with_categories=true) %} {% if
+      messages %} {% for category, message in messages %}
+      <div class="flash {{ category }}">{{ message }}</div>
+      {% endfor %} {% endif %} {% endwith %}
+    </div>
 
     <main>
       <section class="products">

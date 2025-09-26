@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Products - E-Commerce</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+  <body>
+    <nav>
+      <div class="logo">MyShop</div>
+      <div class="menu-toggle">&#9776;</div>
+      <ul class="nav-links">
+        <li><a href="{{ url_for('routes.index') }}">Home</a></li>
+        <li><a href="{{ url_for('routes.products') }}">Shop</a></li>
+        <li>
+          <a
+            href="{{ url_for('routes.remove_item') }}"
+            style="
+              white-space: nowrap;
+              margin: 10px;
+              background-color: #dc3545;
+              color: white;
+              border-radius: 5px;
+              padding: 5px 10px;
+            "
+            >Remove</a
+          >
+        </li>
+      </ul>
+    </nav>
+
+    <div class="flash-messages">
+      {% with messages = get_flashed_messages(with_categories=true) %} {% if
+      messages %} {% for category, message in messages %}
+      <div class="flash {{ category }}">{{ message }}</div>
+      {% endfor %} {% endif %} {% endwith %}
+    </div>
+
+    <main class="add-product-form">
+      <h2>Add New Product</h2>
+      <form action="{{ url_for('routes.register_item') }}" method="post">
+        <label for="name">Product Name:</label>
+        <input type="text" id="name" name="name" required />
+
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" required></textarea>
+
+        <label for="price">Price:</label>
+        <input type="number" step="0.01" id="price" name="price" required />
+
+        <label for="image_url">Image URL:</label>
+        <input type="url" id="image_url" name="image_url" required />
+
+        <button type="submit" class="btn">Add Product</button>
+      </form>
+    </main>
+
+    <footer>
+      <p>&copy; 2025 MyShop. All rights reserved.</p>
+    </footer>
+
+    <script>
+      const menuToggle = document.querySelector(".menu-toggle");
+      const navLinks = document.querySelector(".nav-links");
+      menuToggle.addEventListener("click", () =>
+        navLinks.classList.toggle("active")
+      );
+    </script>
+  </body>
+</html>

@@ -28,11 +28,26 @@
       </ul>
     </nav>
 
+    {% if user.is_admin %}
+    <header class="hero">
+      <h1>Welcome Admin</h1>
+      <p>{{ user.email }}</p>
+      <a href="{{ url_for('routes.register_item') }}" class="btn"
+        >Add Product</a
+      >
+      <a href="{{ url_for('routes.remove_item') }}" class="btn"
+        >Remove Product</a
+      >
+    </header>
+    {% else %}
     <header class="hero">
       <h1>Welcome to MyShop</h1>
       <p>Your one-stop online store!</p>
-      <a href="{{ url_for('routes.products') }}" class="btn">Shop Now</a>
+      <a href="{{ url_for('routes.products') }}" class="btn"
+        >View All Products</a
+      >
     </header>
+    {% endif %}
 
     <main>
       <section class="products">
