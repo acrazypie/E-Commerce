@@ -53,4 +53,4 @@ project/
 - Funzioni e variabili: snake_case
 - Classi: CamelCase
 
-mantenuto da [acrazypie](https://linktr.ee/gen3sio)
+[![Maintained by acrazypie](https://img.shields.io/badge/maintained%20by-acrazypie-9cf?logo=github&style=flat-square)](https://linktr.ee/gen3sio)
