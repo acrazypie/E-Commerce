@@ -12,10 +12,10 @@ class User(db.Model):
 
     carts = db.relationship("Cart", backref="user", lazy=True)
 
-    def set_password(self, password: str):
+    def set_password(self, password):
         self.password_hash = generate_password_hash(password)
 
-    def check_password(self, password: str) -> bool:
+    def check_password(self, password) -> bool:
         return check_password_hash(self.password_hash, password)
 
 
@@ -70,4 +70,5 @@ def get_user_cart_items(db: SQLAlchemy, user_id, Cart, CartItem):
 def get_user_cart_total(db: SQLAlchemy, user_id, Cart, CartItem):
     items = get_user_cart_items(db, user_id, Cart, CartItem)
     total = sum(item.product.price * item.quantity for item in items)
+    total = round(total, 2)
     return total

@@ -18,7 +18,11 @@
         <li>
           <a href="{{ url_for('routes.products') }}" class="active">Shop</a>
         </li>
-        <li><a href="{{ url_for('routes.cart') }}">Cart</a></li>
+        <li>
+          <a href="{{ url_for('routes.cart') }}"
+            >Cart ({{ cart_item_count }})</a
+          >
+        </li>
       </ul>
     </nav>
 

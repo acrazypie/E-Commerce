@@ -16,7 +16,9 @@
       <ul class="nav-links">
         <li><a href="{{ url_for('routes.index') }}">Home</a></li>
         <li><a href="{{ url_for('routes.products') }}">Shop</a></li>
-        <li><a href="{{ url_for('routes.cart') }}">Cart</a></li>
+        <li>
+          <a href="{{ url_for('routes.cart') }}">Cart ({{ cart_items }})</a>
+        </li>
 
         {% if 'user_id' in session %}
         <li><a href="{{ url_for('routes.logout') }}">Logout</a></li>
