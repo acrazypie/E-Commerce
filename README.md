@@ -1,14 +1,15 @@
 # 🛒 E-Commerce
 
-Un esempio di e-commerce creato con **Flask** e **SQLAlchemy**.
+Un esempio di e-commerce creato con **Python e Flask**, database in **SQLite**.
 
 ## 📝 Caratteristiche
 
-- Gestione prodotti
-- Carrello utenti
-- Interfaccia web semplice con HTML/CSS
-- Database SQLite
-
+- Registrazione con email e password (`hashata con werkzeug.security`).
+- Login e logout con gestione della sessione Flask
+- Prodotti consigliati nella home
+- Shop con prodotti curati
+- Carrello facilmente gestibile
+  
 ## 💾 Installazione
 
 1. Clona la repository:
@@ -23,6 +24,26 @@ Un esempio di e-commerce creato con **Flask** e **SQLAlchemy**.
    ```bash
    python app.py
    ```
+
+## 📂 Struttura
+```bash
+project/
+│── app.py # Applicazione Flask
+│── models.py # Modelli/Classi usati
+│── routes.py # Gestione di tutte le rotte
+├── db_test.py # Script per popolare il db (testing purposes)
+│── database/ # Database SQLite (creato automaticamente)
+│── templates/ # Templates HTML (Jinja2)
+│ ├── cart.html 
+│ ├── index.html
+│ ├── login.html
+│ ├── products.html
+│ └── register.html
+│── static/ # File CSS
+│── README.md # Documentazione del progetto
+
+```
+
 
 ## 🚀 Stile e convenzioni
 
