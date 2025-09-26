@@ -1,6 +1,7 @@
 # 🛒 E-Commerce
 
-Un esempio di e-commerce creato con **Python e Flask**, database in **SQLite**.
+Un esempio di e-commerce creato con **Python e Flask**, database in **SQLite**.\
+Questo progetto è una esercitazione didattica.
 
 ## 📝 Caratteristiche
 
@@ -9,6 +10,7 @@ Un esempio di e-commerce creato con **Python e Flask**, database in **SQLite**.
 - Prodotti consigliati nella home
 - Shop con prodotti curati
 - Carrello facilmente gestibile
+- Account admin che gestisce i prodotti
 
 ## 💾 Installazione
 
