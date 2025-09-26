@@ -16,39 +16,50 @@
       <div class="menu-toggle">&#9776;</div>
       <ul class="nav-links">
         <li><a href="{{ url_for('routes.index') }}">Home</a></li>
-        <li><a href="{{ url_for('routes.products') }}">Shop</a></li>
-        <li><a href="{{ url_for('routes.cart') }}" class="active">Cart</a></li>
-        {% if user.is_admin %}
         <li>
-          <a
-            href="{{ url_for('routes.register_item') }}"
-            style="
-              white-space: nowrap;
-              margin: 10px;
-              background-color: #28a745;
-              color: white;
-              border-radius: 5px;
-              padding: 5px 10px;
-            "
-            >Add</a
-          >
+          <a href="{{ url_for('routes.products') }}" class="active">Shop</a>
         </li>
         <li>
-          <a
-            href="{{ url_for('routes.remove_item') }}"
-            style="
-              white-space: nowrap;
-              margin: 10px;
-              background-color: #dc3545;
-              color: white;
-              border-radius: 5px;
-              padding: 5px 10px;
-            "
-            >Remove</a
-          >
+          <a href="{{ url_for('routes.cart') }}">Cart {{ cart_item_count }}</a>
         </li>
-        {% endif %}
       </ul>
+      {% if user.is_admin %}
+      <div
+        style="
+          margin-left: 20px;
+          display: flex;
+          align-items: center;
+
+          flex-width: nowrap;
+        "
+      >
+        <a
+          href="{{ url_for('routes.register_item') }}"
+          style="
+            white-space: nowrap;
+
+            background-color: #28a745;
+            color: white;
+            border-radius: 5px;
+            padding: 5px 10px;
+          "
+          >Add</a
+        >
+
+        <a
+          href="{{ url_for('routes.remove_item') }}"
+          style="
+            white-space: nowrap;
+            margin: 10px;
+            background-color: #dc3545;
+            color: white;
+            border-radius: 5px;
+            padding: 5px 10px;
+          "
+          >Remove</a
+        >
+      </div>
+      {% endif %}
     </nav>
 
     <div class="flash-messages">
