@@ -39,7 +39,9 @@ project/
 │ ├── index.html
 │ ├── login.html
 │ ├── products.html
-│ └── register.html
+│ ├── register_item.html
+│ ├── register.html
+│ └── remove_item.html
 │── static/ # File CSS
 │── requirements.txt # Librerie usate
 │── .gitignore # Ignore __pycache__ folder on commits
