@@ -14,23 +14,24 @@
       <div class="logo">MyShop</div>
       <div class="menu-toggle">&#9776;</div>
       <ul class="nav-links">
-        <li><a href="{{ url_for('routes.index') }}">Home</a></li>
-        <li><a href="{{ url_for('routes.products') }}">Shop</a></li>
+        <li><a href="{{ url_for('routes.index') }}">🏠 Home</a></li>
+        <li><a href="{{ url_for('routes.products') }}">📦 Shop</a></li>
         <li>
-          <a href="{{ url_for('routes.cart') }}">Cart {{ cart_items }}</a>
+          <a href="{{ url_for('routes.cart') }}">🛒 Cart {{ cart_items }}</a>
         </li>
+        <li><a href="{{ url_for('routes.user_area') }}">👤 User</a></li>
       </ul>
       {% if 'user_id' in session %}
-      <a href="{{ url_for('routes.logout') }}" class="btn">Logout</a>
+      <a href="{{ url_for('routes.logout') }}" class="btn">🚪 Logout</a>
       {% else %}
-      <a href="{{ url_for('routes.login') }}" class="btn">Login</a>
+      <a href="{{ url_for('routes.login') }}" class="btn">🚪 Login</a>
       {% endif %}
     </nav>
 
     {% if user.is_admin %}
     <header class="hero">
       <h1>Welcome Admin</h1>
-      <p>{{ user.email }}</p>
+      <p>{{ user.username }}</p>
       <a href="{{ url_for('routes.register_item') }}" class="btn"
         >Add Product</a
       >
@@ -40,7 +41,7 @@
     </header>
     {% elif user %}
     <header class="hero">
-      <h1>Welcome {{ user.email }}</h1>
+      <h1>Welcome {{ user.username }}</h1>
       <p>Find your perfect product!</p>
       <a href="{{ url_for('routes.products') }}" class="btn"
         >View All Products</a

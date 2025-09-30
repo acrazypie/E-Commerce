@@ -19,6 +19,15 @@
     <div class="register-container">
       <h2>Register</h2>
       <form method="post" class="register-form">
+        <label for="username">Username:</label>
+        <input
+          id="username"
+          name="username"
+          required
+          pattern="[A-Za-z]{3,}"
+          title="Only letters, at least 3 characters"
+        />
+
         <label for="email">Email:</label>
         <input type="email" id="email" name="email" required />
 

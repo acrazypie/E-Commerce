@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Area</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='user.css') }}"
+    />
+  </head>
+  <body>
+    <div class="user-container">
+      <div class="user-card">
+        <h2>Welcome, {{ user.username }}</h2>
+        <p>Email: {{ user.email }}</p>
+
+        <div class="user-actions">
+          <a href="{{ url_for('routes.cart') }}" class="btn">🛒 View Cart</a>
+          <a href="{{ url_for('routes.products') }}" class="btn"
+            >📦 Continue Shopping</a
+          >
+          <a href="{{ url_for('routes.logout') }}" class="btn logout"
+            >🚪 Logout</a
+          >
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

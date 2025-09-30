@@ -15,12 +15,14 @@
       <div class="logo">MyShop</div>
       <div class="menu-toggle">&#9776;</div>
       <ul class="nav-links">
-        <li><a href="{{ url_for('routes.index') }}">Home</a></li>
+        <li><a href="{{ url_for('routes.index') }}">🏠 Home</a></li>
         <li>
-          <a href="{{ url_for('routes.products') }}" class="active">Shop</a>
+          <a href="{{ url_for('routes.products') }}" class="active">📦 Shop</a>
         </li>
         <li>
-          <a href="{{ url_for('routes.cart') }}">Cart {{ cart_item_count }}</a>
+          <a href="{{ url_for('routes.cart') }}"
+            >🛒 Cart {{ cart_item_count }}</a
+          >
         </li>
       </ul>
       {% if user.is_admin %}

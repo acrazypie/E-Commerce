@@ -9,6 +9,7 @@ from flask import (
 )
 from models import db, User, Product, Cart, CartItem
 from models import get_user_cart, get_user_cart_items, get_user_cart_total
+from utility import validate_username
 
 routes = Blueprint("routes", __name__)
 
@@ -196,6 +197,7 @@ def logout():
 @routes.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
+        name = request.form.get("username")
         email = request.form.get("email")
         password = request.form.get("password")
         confirm_password = request.form.get("confirm-password")
@@ -208,7 +210,15 @@ def register():
             flash("Email already registered", "warning")
             return redirect(url_for("routes.register"))
 
+        if not validate_username(name if name else ""):
+            flash(
+                "Invalid username. Only letters allowed, and no forbidden words.",
+                "danger",
+            )
+            return redirect(url_for("routes.register"))
+
         new_user = User()
+        new_user.username = name
         new_user.email = email
         new_user.set_password(password)
         db.session.add(new_user)
@@ -224,3 +234,14 @@ def register():
         return redirect(url_for("routes.login"))
 
     return render_template("register.html")
+
+
+# User Area
+@routes.route("/user")
+def user_area():
+    if "user_id" not in session:
+        flash("Please log in first", "warning")
+        return redirect(url_for("routes.login"))
+
+    user = User.query.get(session["user_id"])
+    return render_template("user.html", user=user)
