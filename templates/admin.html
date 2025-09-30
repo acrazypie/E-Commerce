@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Admin Dashboard - MyShop</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='admin.css') }}"
+    />
+  </head>
+  <body>
+    <div class="admin-container">
+      <h1>Admin Dashboard</h1>
+
+      <!-- Products Section -->
+      <section>
+        <div class="section-header">
+          <h2>Products</h2>
+          <a href="{{ url_for('routes.register_item') }}" class="btn add-btn"
+            >➕ Add Product</a
+          >
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Price (€)</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for product in products %}
+            <tr>
+              <td>{{ product.id }}</td>
+              <td>{{ product.name }}</td>
+              <td>{{ "%.2f"|format(product.price) }}</td>
+              <td>
+                <a
+                  href="{{ url_for('routes.remove_item', product_id=product.id) }}"
+                  class="btn danger-btn"
+                  >🗑 Remove</a
+                >
+              </td>
+            </tr>
+            {% else %}
+            <tr>
+              <td colspan="4">No products available.</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </section>
+
+      <!-- Users Section -->
+      <section>
+        <h2>Users</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Username</th>
+              <th>Email</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for user in users %}
+            <tr>
+              <td>{{ user.id }}</td>
+              <td>{{ user.username }}</td>
+              <td>{{ user.email }}</td>
+              <td>
+                {% if user.is_online %}
+                <span class="status online">🟢 Online</span>
+                {% else %}
+                <span class="status offline">⚪ Offline</span>
+                {% endif %}
+              </td>
+            </tr>
+            {% else %}
+            <tr>
+              <td colspan="4">No users available.</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </section>
+    </div>
+  </body>
+</html>

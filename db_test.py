@@ -6,6 +6,7 @@ def populate_db_test():
     if not User.query.first():
 
         test_admin = User()
+        test_admin.username = "Admin"
         test_admin.email = "demo@demo.com"
         test_admin.set_password("MyPassword123")
         test_admin.is_admin = True

@@ -173,9 +173,14 @@ def login():
         password = request.form.get("password")
 
         user = User.query.filter_by(email=email).first()
+
         if user and user.check_password(password):
             session["user_id"] = user.id
             flash("Login successful!", "success")
+
+            if user.check_admin():
+                return redirect(url_for("routes.admin"))
+
             return redirect(url_for("routes.index"))
         elif User.query.count() == 0:
             flash("No users found. Please register first.", "warning")
@@ -245,3 +250,18 @@ def user_area():
 
     user = User.query.get(session["user_id"])
     return render_template("user.html", user=user)
+
+
+@routes.route("/admin")
+def admin():
+    if "user_id" not in session:
+        flash("Please log in first", "warning")
+        return redirect(url_for("routes.login"))
+
+    products = Product.query.all()
+    users = User.query.filter_by(is_admin=False).all()
+
+    for user in users:
+        user.is_online = session.get("user_id") == user.id
+
+    return render_template("admin.html", products=products, users=users)
