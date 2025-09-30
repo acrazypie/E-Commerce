@@ -35,11 +35,13 @@ project/
 │── models.py # Modelli/Classi usati
 │── routes.py # Gestione di tutte le rotte
 ├── db_test.py # Script per popolare il db (testing purposes)
+├── utility.py # Funzioni utili lato Python
 │── database/ # Database SQLite (creato automaticamente)
 │── templates/ # Templates HTML (Jinja2)
 │ ├── cart.html
 │ ├── index.html
 │ ├── login.html
+│ ├── user.html
 │ ├── products.html
 │ ├── register_item.html
 │ ├── register.html
