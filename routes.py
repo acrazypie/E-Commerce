@@ -252,6 +252,7 @@ def user_area():
     return render_template("user.html", user=user)
 
 
+# Admin dashboard
 @routes.route("/admin")
 def admin():
     if "user_id" not in session:
