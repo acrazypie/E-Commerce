@@ -50,7 +50,7 @@ project/
 │ ├── utility.py # Funzioni utili lato Python
 │── requirements.txt # Librerie usate
 │── .gitignore # Ignore __pycache__ folder on commits
-│── README.md # Documentazione del progetto
+└── README.md # Documentazione del progetto
 
 ```
 
