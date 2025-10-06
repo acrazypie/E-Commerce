@@ -31,22 +31,23 @@ Questo progetto è una esercitazione didattica.
 
 ```bash
 project/
-│── app.py # Applicazione Flask
-│── models.py # Modelli/Classi usati
-│── routes.py # Gestione di tutte le rotte
-├── db_test.py # Script per popolare il db (testing purposes)
-├── utility.py # Funzioni utili lato Python
-│── database/ # Database SQLite (creato automaticamente)
-│── templates/ # Templates HTML (Jinja2)
-│ ├── cart.html
-│ ├── index.html
-│ ├── login.html
-│ ├── user.html
-│ ├── products.html
-│ ├── register_item.html
-│ ├── register.html
-│ └── remove_item.html
-│── static/ # File CSS
+│── app/
+│ │── database/ # Database SQLite (creato automaticamente)
+│ │── static/ # File CSS
+│ │── templates/ # Templates HTML (Jinja2)
+│ │ ├── cart.html
+│ │ ├── index.html
+│ │ ├── login.html
+│ │ ├── user.html
+│ │ ├── products.html
+│ │ ├── register_item.html
+│ │ ├── register.html
+│ │ └── remove_item.html
+│ │── app.py # Applicazione Flask
+│ │── models.py # Modelli/Classi usati
+│ │── routes.py # Gestione di tutte le rotte
+│ ├── db_test.py # Script per popolare il db (testing purposes)
+│ ├── utility.py # Funzioni utili lato Python
 │── requirements.txt # Librerie usate
 │── .gitignore # Ignore __pycache__ folder on commits
 │── README.md # Documentazione del progetto
