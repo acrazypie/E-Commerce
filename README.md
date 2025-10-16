@@ -1,4 +1,4 @@
-E‑Commerce (Flask + SQLAlchemy)
+# E‑Commerce (Flask + SQLAlchemy)
 
 ![Python](https://img.shields.io/badge/Python-3.8%2B-blue)
 ![Flask](https://img.shields.io/badge/Flask-2.x-green)
@@ -10,7 +10,7 @@ Un esempio di e-commerce minimal ma completo, costruito con Flask e SQLAlchemy, 
 
 ---
 
-🚀 Features
+## 🚀 Features
 
 - Gestione prodotti: CRUD (crea, leggi, aggiorna, elimina)
 - Carrello utenti: aggiungi / rimuovi prodotti
@@ -20,7 +20,7 @@ Un esempio di e-commerce minimal ma completo, costruito con Flask e SQLAlchemy, 
 
 ---
 
-📦 Struttura del progetto
+## 📦 Struttura del progetto
 
 ```
 project/
@@ -46,7 +46,7 @@ project/
 
 ---
 
-🛠️ Setup & installazione
+## 🛠️ Setup & installazione
 
 > Nota: presuppone che tu abbia Python 3.x installato.
 
@@ -87,7 +87,7 @@ project/
 
 ---
 
-🧩 Come è fatta la logica
+## 🧩 Come è fatta la logica
 
 - models.py: definisce le classi / tabelle (es. Product, User, Cart, etc.)
 - routes.py: gestisce le richieste HTTP, coordina modelli + template
@@ -96,7 +96,7 @@ project/
 
 ---
 
-🎯 Casi d’uso / flusso tipico
+## 🎯 Casi d’uso / flusso tipico
 
 1. L’utente visita la home, vede i prodotti
 2. Seleziona un prodotto, lo aggiunge al carrello
@@ -106,7 +106,7 @@ project/
 
 ---
 
-🔧 Estensioni & miglioramenti suggeriti
+## 🔧 Estensioni & miglioramenti suggeriti
 
 - Autenticazione / registrazione utente + autorizzazione
 - Pagine ordine / checkout + integrazione con gateway di pagamento
@@ -119,7 +119,7 @@ project/
 
 ---
 
-🧪 Testing & qualità del codice
+## 🧪 Testing & qualità del codice
 
 - Aggiungi test per modelli / operazioni DB / rotte
 - Usa un linter (flake8, pylint, black) per mantenere stile coerente
@@ -127,7 +127,7 @@ project/
 
 ---
 
-ℹ️ Convenzioni di codice
+## ℹ️ Convenzioni di codice
 
 - Nomi file: snake_case
 - Funzioni / variabili: snake_case
@@ -136,7 +136,7 @@ project/
 
 ---
 
-🧑‍💻 Contribuire
+## 🧑‍💻 Contribuire
 
 1. Fai fork del repo
 2. Crea un branch feature / fix: git checkout -b feat/nome-funzione
@@ -146,7 +146,7 @@ project/
 
 ---
 
-📄 Licenza & crediti
+## 📄 Licenza & crediti
 
 - Mantenuto da acrazypie
 - Licenza: MIT
