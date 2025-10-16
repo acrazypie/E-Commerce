@@ -2,7 +2,6 @@
 
 ![Python](https://img.shields.io/badge/Python-3.8%2B-blue)
 ![Flask](https://img.shields.io/badge/Flask-2.x-green)
-![License](https://img.shields.io/github/license/acrazypie/E-Commerce)
 ![Last Commit](https://img.shields.io/github/last-commit/acrazypie/E-Commerce)
 ![Stars](https://img.shields.io/github/stars/acrazypie/E-Commerce?style=social)
 
