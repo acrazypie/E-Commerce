@@ -10,6 +10,9 @@ from flask import (
 from app.models.models import db, User, Product, Cart, CartItem
 from app.models.models import get_user_cart, get_user_cart_items, get_user_cart_total
 from ..utility import validate_username
+from .. import oauth
+from flask_login import login_user, logout_user, current_user
+
 
 routes = Blueprint("routes", __name__)
 
@@ -175,7 +178,7 @@ def login():
         user = User.query.filter_by(email=email).first()
 
         if user and user.check_password(password):
-            session["user_id"] = user.id
+            login_user(user)
             flash("Login successful!", "success")
 
             if user.check_admin():
@@ -193,7 +196,8 @@ def login():
 
 @routes.route("/logout")
 def logout():
-    session.pop("user_id", None)
+    logout_user()
+    session.pop("user_id")
     flash("Logged out successfully", "info")
     return redirect(url_for("routes.index"))
 
@@ -239,6 +243,55 @@ def register():
         return redirect(url_for("routes.login"))
 
     return render_template("register.html")
+
+
+# Google Sign-In
+@routes.route("/login/<provider>")
+def oauth_login(provider):
+    client = oauth.create_client(provider)
+    redirect_uri = url_for("routes.auth_callback", provider=provider, _external=True)
+    return client.authorize_redirect(redirect_uri)  # type: ignore
+
+
+@routes.route("/auth/<provider>")
+def auth_callback(provider):
+    client = oauth.create_client(provider)
+    token = client.authorize_access_token()  # type: ignore
+
+    if provider == "google":
+        # Fetch user info directly from Google's UserInfo endpoint
+        userinfo = client.get("https://openidconnect.googleapis.com/v1/userinfo").json()  # type: ignore
+        email = userinfo.get("email")
+        name = userinfo.get("name")
+        oauth_id = userinfo.get("sub")
+
+    else:
+        flash("Unsupported provider", "danger")
+        return redirect(url_for("routes.login"))
+
+    # find or create user
+    existing = User.query.filter_by(oauth_provider=provider, oauth_id=oauth_id).first()
+    if not existing:
+        existing = User.query.filter_by(email=email).first()
+    if not existing:
+        existing = User()
+        existing.username = name or email.split("@")[0]
+        existing.email = email
+        existing.oauth_provider = provider
+        existing.oauth_id = oauth_id
+
+        db.session.add(existing)
+        db.session.commit()
+
+        new_cart = Cart()
+        new_cart.user_id = existing.id
+
+        db.session.add(new_cart)
+        db.session.commit()
+
+    session["user_id"] = existing.id
+    flash(f"Logged in with {provider.capitalize()}!", "success")
+    return redirect(url_for("routes.index"))
 
 
 # User Area

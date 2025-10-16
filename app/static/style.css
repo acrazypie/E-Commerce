@@ -375,6 +375,7 @@ footer {
 /* Button */
 .btn {
   padding: 10px;
+  margin-bottom: 20px;
   background: #007bff;
   color: #fff;
   border: none;
@@ -383,9 +384,23 @@ footer {
   font-weight: bold;
   transition: background 0.3s;
 }
-
 .btn:hover {
   background: #0056b3;
+}
+
+.btn-google {
+  padding: 10px;
+  background: #25ce85;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+.btn-google:hover {
+  background: #1faf71;
+  color: #fff;
 }
 
 /* Back link */
