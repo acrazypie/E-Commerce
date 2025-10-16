@@ -7,9 +7,9 @@ from flask import (
     flash,
     session,
 )
-from models import db, User, Product, Cart, CartItem
-from models import get_user_cart, get_user_cart_items, get_user_cart_total
-from utility import validate_username
+from app.models.models import db, User, Product, Cart, CartItem
+from app.models.models import get_user_cart, get_user_cart_items, get_user_cart_total
+from ..utility import validate_username
 
 routes = Blueprint("routes", __name__)
 

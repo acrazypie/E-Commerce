@@ -1,4 +1,4 @@
-from models import db, User, Product
+from app.models.models import db, User, Product
 
 
 def populate_db_test():
